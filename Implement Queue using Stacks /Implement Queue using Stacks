@@ -1,0 +1,59 @@
+class Stack():
+    def __init__(self):
+        self.st = [] 
+        
+
+    def push(self, x: int) -> None:
+        self.st.append(x)
+        
+
+    def pop(self) -> int:
+        if len(self.st)>0:
+            return self.st.pop()
+        return -1
+        
+
+    def peek(self) -> int:
+        if len(self.st)>0:
+            return self.st[-1]
+        return -1
+        
+
+    def empty(self) -> bool:
+        return len(self.st) == 0
+
+
+class MyQueue:
+    def __init__(self):
+        self.lt = Stack()
+        self.other = Stack()
+
+    def push(self, x: int) -> None:
+        self.lt.push(x)
+        
+
+    def pop(self) -> int:
+        if not self.lt.empty():
+            while not self.lt.empty():
+                self.other.push(self.lt.pop())
+            s = self.other.pop()
+            while not self.other.empty():
+                self.lt.push(self.other.pop())
+            return s
+        return -1
+        
+
+    def peek(self) -> int:
+        if not self.lt.empty():
+            while not self.lt.empty():
+                self.other.push(self.lt.pop())
+            s = self.other.pop()
+            self.lt.push(s)
+            while not self.other.empty():
+                self.lt.push(self.other.pop())
+            return s
+        
+
+    def empty(self) -> bool:
+        return self.lt.empty()
+        
