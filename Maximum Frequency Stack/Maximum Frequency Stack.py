@@ -1,8 +1,11 @@
 """
-freqstack
+frequency stack
 """
 from collections import deque
 class FreqStack:
+    """
+    FreqStack
+    """
 
     def __init__(self):
         self.st = deque()
@@ -10,10 +13,16 @@ class FreqStack:
         self.second = deque()
 
     def push(self, val: int) -> None:
+        """
+        adds new element
+        """
         self.st.append(val)
         self.dct[val] += 1
 
     def pop(self) -> int:
+        """
+        deletes the most frequent element
+        """
         ind = 0
         for i in self.dct:
             if self.dct[i]>ind:
@@ -27,7 +36,7 @@ class FreqStack:
         while len(self.second)!= 0:
             self.st.append(self.second.pop())
         return m
-        
+
         #ind, lett, res, count = 0, 0, 0, 1
         #used = {}
         #d = self.st.copy()
